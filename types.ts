@@ -36,7 +36,7 @@ export type DateTimeFilter = {
   in?: Maybe<Array<Scalars['DateTime']>>;
   lt?: Maybe<Scalars['DateTime']>;
   lte?: Maybe<Scalars['DateTime']>;
-  not?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeFilter>;
   notIn?: Maybe<Array<Scalars['DateTime']>>;
 };
 
@@ -62,10 +62,30 @@ export type MutationSignupArgs = {
   data: SignupInput;
 };
 
-export enum OrderByArg {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+export type NestedDateTimeFilter = {
+  equals?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeFilter>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+};
+
+export type NestedStringFilter = {
+  contains?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
+  equals?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  not?: Maybe<NestedStringFilter>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  startsWith?: Maybe<Scalars['String']>;
+};
 
 /** A User Profile */
 export type Profile = {
@@ -127,7 +147,7 @@ export type QueryUsersArgs = {
   before?: Maybe<UserWhereUniqueInput>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<UserOrderByInput>;
+  orderBy?: Maybe<Array<UserOrderByInput>>;
   where?: Maybe<UserWhereInput>;
 };
 
@@ -142,6 +162,11 @@ export type SignupInput = {
   profile?: Maybe<ProfileCreateOneWithoutUserInput>;
 };
 
+export enum SortOrder {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
 export type StringFilter = {
   contains?: Maybe<Scalars['String']>;
   endsWith?: Maybe<Scalars['String']>;
@@ -151,7 +176,7 @@ export type StringFilter = {
   in?: Maybe<Array<Scalars['String']>>;
   lt?: Maybe<Scalars['String']>;
   lte?: Maybe<Scalars['String']>;
-  not?: Maybe<Scalars['String']>;
+  not?: Maybe<NestedStringFilter>;
   notIn?: Maybe<Array<Scalars['String']>>;
   startsWith?: Maybe<Scalars['String']>;
 };
@@ -182,11 +207,12 @@ export type UserCreaterolesInput = {
 };
 
 export type UserOrderByInput = {
-  createdAt?: Maybe<OrderByArg>;
-  email?: Maybe<OrderByArg>;
-  id?: Maybe<OrderByArg>;
-  password?: Maybe<OrderByArg>;
-  updatedAt?: Maybe<OrderByArg>;
+  createdAt?: Maybe<SortOrder>;
+  email?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  password?: Maybe<SortOrder>;
+  roles?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
 };
 
 export type UserWhereInput = {
@@ -198,6 +224,7 @@ export type UserWhereInput = {
   OR?: Maybe<Array<UserWhereInput>>;
   password?: Maybe<StringFilter>;
   profile?: Maybe<ProfileWhereInput>;
+  roles?: Maybe<Array<Role>>;
   updatedAt?: Maybe<DateTimeFilter>;
 };
 
