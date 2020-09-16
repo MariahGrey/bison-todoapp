@@ -1,10 +1,11 @@
 import React, { useState, useRef, createContext } from 'react';
 import Head from 'next/head';
-import { Button, Input } from '@chakra-ui/core';
+import { Button, Heading, Input } from '@chakra-ui/core';
 
 import { CenteredBoxForm } from '../components/CenteredBoxForm';
 
 import ToDoItems from './todoitems';
+import CountItems from './countitems';
 
 export const TodoItemsContext = createContext({ items: [], deleteItem: () => null });
 
@@ -49,6 +50,10 @@ function ToDoList() {
       <TodoItemsContext.Provider value={{ items: items, deleteItem: deleteItem }}>
         <CenteredBoxForm>
           <form onSubmit={addItem}>
+            <Heading as="h4" size="md" display="flex" justifyContent="space-between">
+              To Do List
+              <CountItems />
+            </Heading>
             <Input
               m="5"
               p="5"

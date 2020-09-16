@@ -35,7 +35,8 @@ function App({ pageProps, Component }) {
   return (
     <AllProviders>
       <AppWithAuth>
-        <ToDoList {...pageProps} />
+        {/* <Component {...pageProps} /> */}
+        <ToDoList />
       </AppWithAuth>
     </AllProviders>
   );
