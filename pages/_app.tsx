@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 import { AllProviders } from '../components/AllProviders';
 import { useAuth } from '../context/auth';
 
+import ToDoList from './todolist';
+
 /**
  * Dynamically load layouts. This codesplits and prevents code from the logged in layout from being
  * included in the bundle if we're rendering the logged out layout.
@@ -33,7 +35,7 @@ function App({ pageProps, Component }) {
   return (
     <AllProviders>
       <AppWithAuth>
-        <Component {...pageProps} />
+        <ToDoList {...pageProps} />
       </AppWithAuth>
     </AllProviders>
   );
