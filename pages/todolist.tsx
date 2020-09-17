@@ -7,7 +7,7 @@ import { CenteredBoxForm } from '../components/CenteredBoxForm';
 import ToDoItems from './todoitems';
 import CountItems from './countitems';
 
-export const TodoItemsContext = createContext({ items: [], deleteItem: () => null });
+export const TodoItemsContext = createContext({ items: [], deleteItem: (key) => key });
 
 function ToDoList() {
   const [items, setItems] = useState([]);
@@ -31,7 +31,7 @@ function ToDoList() {
     e.preventDefault();
   };
 
-  const deleteItem = (key) => {
+  const deleteItem = (key: any) => {
     const filteredItems = items.filter((item) => {
       console.log('deleted item: ' + item.key);
 
@@ -47,7 +47,7 @@ function ToDoList() {
         <title>To Do List</title>
       </Head>
 
-      <TodoItemsContext.Provider value={{ items: items, deleteItem: deleteItem }}>
+      <TodoItemsContext.Provider value={{ items, deleteItem }}>
         <CenteredBoxForm>
           <form onSubmit={addItem}>
             <Heading as="h4" size="md" display="flex" justifyContent="space-between">

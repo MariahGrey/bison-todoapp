@@ -4,7 +4,7 @@ import { Box, Button, List, ListItem, useToast } from '@chakra-ui/core';
 import { TodoItemsContext } from './todolist';
 
 function ToDoItems() {
-  const { items: entries, deleteItem: deleteTask } = useContext(TodoItemsContext);
+  const { items: entries, deleteItem } = useContext(TodoItemsContext);
 
   const toast = useToast();
 
@@ -26,6 +26,7 @@ function ToDoItems() {
               bgColor="rgba(124, 119, 185, 0.1)"
               color="#7C77B9"
               onClick={() => {
+                deleteItem(item.key);
                 toast({
                   title: 'Task Deleted!',
                   description: 'Great job completing that task!',
@@ -33,8 +34,6 @@ function ToDoItems() {
                   isClosable: true,
                   position: 'bottom-left',
                 });
-
-                deleteTask(item.key);
               }}
             >
               {item.text}
