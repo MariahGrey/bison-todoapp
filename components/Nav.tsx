@@ -8,9 +8,7 @@ export function Nav() {
 
   return isMobile ? (
     <Menu>
-      <MenuButton variant="outline" colorScheme="lightPurple" ml="auto">
-        =
-      </MenuButton>
+      <MenuButton ml="auto">=</MenuButton>
 
       <MenuList width="full">
         <MenuItem>
